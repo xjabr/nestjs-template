@@ -1,6 +1,8 @@
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 
+dotenv.config()
+
 class Config {
   private readonly envConfig: Record<string, any>;
 

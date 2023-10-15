@@ -1,8 +1,8 @@
-require('dotenv').config()
+import { CONFIG } from "src/utils/config";
 
 export default {
-  debug: process.env.DEBUG === '1',
-  secret: process.env.SECRET || 'secret',
-  port: process.env.PORT || 5001,
-	sendEmail: process.env.EMAIL_DEBUG || false
+  debug: CONFIG.get('DEBUG') === '1',
+  port: CONFIG.get('PORT') || 5001,
+  secret: CONFIG.get('SECRET') || 'secret',
+	sendEmail: CONFIG.get('EMAIL_DEBUG') || false
 }

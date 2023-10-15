@@ -4,6 +4,8 @@ import { PassportModule } from '@nestjs/passport';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from 'src/services/auth.service';
+import { Logger } from 'src/services/logger.service';
+import { MailService } from 'src/services/mail.service';
 import config from '../config/common';
 import { AuthController } from '../controllers/auth.controller';
 import { Session } from '../entities/session.entity';
@@ -20,7 +22,7 @@ import { AuthStrategy } from '../strategies/auth.strategy';
       signOptions: { expiresIn: '14d' }
     })
   ],
-  providers: [AuthService, AuthStrategy],
+  providers: [AuthService, MailService, Logger, AuthStrategy],
   controllers: [AuthController],
   exports: [AuthService]
 })

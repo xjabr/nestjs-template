@@ -1,16 +1,17 @@
 import { MailerModule } from '@nestjs-modules/mailer';
 
-require('dotenv').config();
+import { CONFIG } from 'src/utils/config';
+
 
 export function getMailerConfig() {
   return MailerModule.forRoot({
     transport: {
-      host: process.env.EMAIL_HOST,
-      port: parseInt(process.env.EMAIL_PORT),
+      host: CONFIG.get('EMAIL_HOST'),
+      port: parseInt(CONFIG.get('EMAIL_PORT')),
       secure: false,
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
+        user: CONFIG.get('EMAIL_USER'),
+        pass: CONFIG.get('EMAIL_PASSWORD'),
       },
     },
     defaults: {

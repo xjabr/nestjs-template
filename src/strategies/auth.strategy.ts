@@ -20,10 +20,9 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any): Promise<any> {
-    const user = await this.userRepository.findOne({ where: { id: payload.id }, relations: { organization: true }} );
+    const user = await this.userRepository.findOne({ where: { id: payload.id } });
 
     if (!user) return null;
-    if (!user.isActive) return null;
 
     delete user.password;
     return user; // store on req.user
